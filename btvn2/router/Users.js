@@ -1,7 +1,7 @@
 const express = require('express');
 const Users = express.Router();
 
-//create manga list
+//create  list
 const users = [
     { id: 1, name:"Nguyen Trong Phu"},
     { id: 2, name:"Edogawa Conan"},
@@ -21,13 +21,15 @@ Users.post('/',function(req,res){
     res.send(users);
 });
 
-Users.put('/', (req, res) => {
+
+
+Users.put(`/:id`, (req, res) => {
 
    
     for (let i = 0; i < users.length; i++){
-        if (users[i].id === req.body.id){
+        if (users[i].id == req.params.id){
             const newUser = {
-                id: req.body.id,
+                id: req.params.id,
                 name: req.body.name,
             }
 
@@ -39,9 +41,9 @@ Users.put('/', (req, res) => {
     res.send(users);
 })
 
-Users.delete('/', (req, res) => {
+Users.delete(`/:id`, (req, res) => {
     for (let i = 0; i < users.length; i++){
-        if (users[i].id === req.body.id){
+        if (users[i].id == req.params.id){
     
             users.splice(i,1);
            
